@@ -139,7 +139,7 @@ cartography <- cartography[cartography$NUTS_ID != "ES63" &
                              cartography$NUTS_ID != "PT30", ]
 cartography <- cartography[order(cartography$NUTS_ID), ]
 
-# Neighborhood structure by contiguity
+# Neighbourhood structure by contiguity
 Neigh <- poly2nb(cartography)
 
 # Manually add adjacency between Cataluña (ES51), Comunitat Valenciana (ES52)
@@ -160,15 +160,15 @@ W <- nb2mat(Neigh, style = "B", zero.policy = TRUE)
 Q <- diag(apply(W, 1, sum)) - W
 # Number of areas
 NNUTS <- nrow(W)
-# Number of neighbors of each area
+# Number of neighbours of each area
 nadj <- apply(W, 1, sum)
-# Neighbors of each area
+# Neighbours of each area
 map <- unlist(apply(W, 1, function(x) which(x != 0)))
-# Sum of all the neighbor numbers of all areas
+# Sum of all the neighbour numbers of all areas
 nadj.tot <- length(map)
-# Cumulative sums of the number of neighbors of each area
+# Cumulative sums of the number of neighbours of each area
 index <- c(0, cumsum(nadj))
-# All the neighborhoods j ~ i where i < j
+# All the neighbourhoods j ~ i where i < j
 from.to <- cbind(rep(1:NNUTS, times = nadj), map); colnames(from.to) <- c("from", "to")
 from.to <- from.to[which(from.to[, 1] < from.to[, 2]), ]
 NDist <- nrow(from.to)
@@ -242,7 +242,7 @@ limit <- c(min(cartography$y_mean_ordinal, na.rm = TRUE),
            max(cartography$y_mean_ordinal, na.rm = TRUE))
 p_y_mean_ordinal <- ggplot(cartography) + 
   geom_sf(aes(fill = y_mean_ordinal), color = "grey30", linewidth = 0.1) + 
-  scale_fill_gradientn(colours = brewer.pal(9, "YlOrBr"), 
+  scale_fill_gradientn(colours = brewer.pal(9, "Purples"), 
                        limits = c(limit[1], limit[2]),
                        name = NULL) + ggtitle("Ordinal") +
   theme_void() + theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
@@ -252,7 +252,7 @@ limit <- c(min(cartography$y_mean_bernoulli1, na.rm = TRUE),
            max(cartography$y_mean_bernoulli1, na.rm = TRUE))
 p_y_mean_bernoulli1 <- ggplot(cartography) + 
   geom_sf(aes(fill = y_mean_bernoulli1), color = "grey30", linewidth = 0.1) + 
-  scale_fill_gradientn(colours = brewer.pal(9, "YlOrBr"), 
+  scale_fill_gradientn(colours = brewer.pal(9, "Oranges"), 
                        limits = c(limit[1], limit[2]),
                        name = NULL) + ggtitle("Bernoulli (D+)") +
   theme_void() + theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
@@ -262,7 +262,7 @@ limit <- c(min(cartography$y_mean_bernoulli2, na.rm = TRUE),
            max(cartography$y_mean_bernoulli2, na.rm = TRUE))
 p_y_mean_bernoulli2 <- ggplot(cartography) + 
   geom_sf(aes(fill = y_mean_bernoulli2), color = "grey30", linewidth = 0.1) + 
-  scale_fill_gradientn(colours = brewer.pal(9, "YlOrBr"), 
+  scale_fill_gradientn(colours = brewer.pal(9, "Oranges"), 
                        limits = c(limit[1], limit[2]),
                        name = NULL) + ggtitle("Bernoulli (D-)") +
   theme_void() + theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
@@ -505,11 +505,11 @@ modelInits <- local({
 # # Number of chains to run in parallel
 # nchains <- 5
 # # pNimble call
-# salnimble <- pNimble(code = modelCode, data = modelData, constants = modelConstants, 
-#                      inits = modelInits, nchains = nchains, seeds = 1:nchains, 
-#                      niter = 2000, nburnin = 1000, thin = 5, 
-#                      summary = TRUE, WAIC = TRUE, monitors = modelParameters, 
-#                      # ntfyAccount = "MigueBeneito", 
+# salnimble <- pNimble(code = modelCode, data = modelData, constants = modelConstants,
+#                      inits = modelInits, nchains = nchains, seeds = 1:nchains,
+#                      niter = 2000, nburnin = 1000, thin = 5,
+#                      summary = TRUE, WAIC = TRUE, monitors = modelParameters,
+#                      # ntfyAccount = "MigueBeneito",
 #                      HMC = TRUE, parallel = TRUE)
 # 
 # saveRDS(salnimble, file = file.path("results", paste0("ordinal-leroux-hmc-waic-", gender, ".rds")))
@@ -1077,7 +1077,7 @@ p_thetamean_bernoulli2 <- p_thetamean_bernoulli2 + ggtitle("Bernoulli (D-)")
 
 p_thetamean_ordinal <- p_thetamean_ordinal + labs(tag = "Mean")
 p_thetasd_ordinal <- p_thetasd_ordinal + labs(tag = "Sd")
-p_probmean_ordinal <- p_probmean_ordinal + labs(tag = "Significance")
+p_probmean_ordinal <- p_probmean_ordinal + labs(tag = "P(> 0)")
 
 tema_mapas <- theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
                     plot.tag = element_text(face = "bold", size = 13, angle = 90),
