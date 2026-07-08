@@ -271,7 +271,7 @@ limit <- c(min(cartography$y_mean_ordinal, na.rm = TRUE),
            max(cartography$y_mean_ordinal, na.rm = TRUE))
 p_y_mean_ordinal <- ggplot(cartography) + 
   geom_sf(aes(fill = y_mean_ordinal), color = "grey30", linewidth = 0.1) + 
-  scale_fill_gradientn(colours = brewer.pal(9, "YlOrBr"), 
+  scale_fill_gradientn(colours = brewer.pal(9, "Purples"), 
                        limits = c(limit[1], limit[2]),
                        name = NULL) + ggtitle("Ordinal") +
   theme_void() + theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
@@ -281,7 +281,7 @@ limit <- c(min(cartography$y_mean_bernoulli1, na.rm = TRUE),
            max(cartography$y_mean_bernoulli1, na.rm = TRUE))
 p_y_mean_bernoulli1 <- ggplot(cartography) + 
   geom_sf(aes(fill = y_mean_bernoulli1), color = "grey30", linewidth = 0.1) + 
-  scale_fill_gradientn(colours = brewer.pal(9, "YlOrBr"), 
+  scale_fill_gradientn(colours = brewer.pal(9, "Oranges"), 
                        limits = c(limit[1], limit[2]),
                        name = NULL) + ggtitle("Bernoulli (D+)") +
   theme_void() + theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
@@ -291,7 +291,7 @@ limit <- c(min(cartography$y_mean_bernoulli2, na.rm = TRUE),
            max(cartography$y_mean_bernoulli2, na.rm = TRUE))
 p_y_mean_bernoulli2 <- ggplot(cartography) + 
   geom_sf(aes(fill = y_mean_bernoulli2), color = "grey30", linewidth = 0.1) + 
-  scale_fill_gradientn(colours = brewer.pal(9, "YlOrBr"), 
+  scale_fill_gradientn(colours = brewer.pal(9, "Oranges"), 
                        limits = c(limit[1], limit[2]),
                        name = NULL) + ggtitle("Bernoulli (D-)") +
   theme_void() + theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12))
@@ -1048,7 +1048,7 @@ p_thetamean_bernoulli2 <- p_thetamean_bernoulli2 + ggtitle("Bernoulli (D-)")
 
 p_thetamean_ordinal <- p_thetamean_ordinal + labs(tag = "Mean")
 p_thetasd_ordinal <- p_thetasd_ordinal + labs(tag = "Sd")
-p_probmean_ordinal <- p_probmean_ordinal + labs(tag = "Significance")
+p_probmean_ordinal <- p_probmean_ordinal + labs(tag = "P(> 0)")
 
 tema_mapas <- theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
                     plot.tag = element_text(face = "bold", size = 13, angle = 90),
