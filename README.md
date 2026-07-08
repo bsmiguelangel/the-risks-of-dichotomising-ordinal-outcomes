@@ -1,4 +1,4 @@
-# The risks of dichotomising ordinal outcome measures: A spatial analysis of self-rated health in Western Europe by age and education
+# The risks of dichotomising ordinal outcome measures: A spatial analysis of self-rated health in Western Europe
 
 Paper under review: 
 
